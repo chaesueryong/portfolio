@@ -700,6 +700,11 @@ a:hover {
   background-color: #0078ff;
 }
 
+.profile-p-tag {
+  white-space: nowrap;
+  font-size: 20px;
+}
+
 /*======================================
 //--//-->   SERVICES
 ======================================*/
@@ -783,6 +788,7 @@ a:hover {
 .work-img {
   display: block;
   overflow: hidden;
+  background-color: black;
 }
 
 .work-img img {
