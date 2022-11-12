@@ -823,7 +823,13 @@ a:hover {
 }
 
 .w-title {
+  display: flex;
+  justify-content: space-between;
   font-size: 1.2rem;
+}
+
+.w-date {
+  margin-left: auto;
 }
 
 /*======================================
