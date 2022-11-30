@@ -792,6 +792,9 @@ a:hover {
 }
 
 .work-img img {
+  display: block;
+  height: 260px;
+  margin: 0 auto;
   transition: all 1s;
 }
 
