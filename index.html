@@ -1,341 +1,594 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="utf-8">
-  <title>프론트엔드 개발자 채수룡</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
-
-  <!-- Favicons -->
+  <title>채수룡 | Frontend Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="4년차 프론트엔드 개발자 채수룡 - Next.js, React, AI 활용 개발">
   <link href="img/dragon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <!-- Bootstrap CSS File -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    :root {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #1a1a1a;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0a0;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      --border: #2a2a2a;
+    }
 
-  <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
-  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    html {
+      scroll-behavior: smooth;
+    }
 
-  <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--text-primary);
+    }
+
+    /* Section Common */
+    section {
+      padding: 100px 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    /* Hero Section */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      background:
+        radial-gradient(ellipse at top right, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom left, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+        var(--bg-primary);
+    }
+
+    #hero .container {
+      width: 100%;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content h1 span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .tag {
+      padding: 0.5rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.875rem 1.75rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-secondary);
+      background: var(--bg-card);
+    }
+
+    /* What I Do Section */
+    #skills {
+      background: var(--bg-secondary);
+    }
+
+    #skills h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .skill-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.5rem;
+    }
+
+    .skill-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* Projects Section */
+    #projects h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      transition: all 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+    }
+
+    .project-image {
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-secondary);
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.02);
+    }
+
+    .project-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-date {
+      font-size: 0.875rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-info h3 {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .project-description li {
+      margin-bottom: 0.5rem;
+      list-style: none;
+      position: relative;
+      padding-left: 1.25rem;
+    }
+
+    .project-description li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .project-link {
+      padding: 0.5rem 1rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: all 0.3s;
+    }
+
+    .project-link:hover {
+      color: var(--text-primary);
+      border-color: var(--accent);
+    }
+
+    /* Contact Section */
+    #contact {
+      background: var(--bg-secondary);
+    }
+
+    #contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #contact .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.3s;
+    }
+
+    .contact-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bg-secondary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .contact-info h4 {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-info p {
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        gap: 1rem;
+      }
+
+      nav a {
+        font-size: 0.8rem;
+      }
+
+      section {
+        padding: 80px 1.5rem;
+      }
+
+      .project-card {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .project-image {
+        order: -1;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+      }
+
+      .btn {
+        text-align: center;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+  </style>
 </head>
+<body>
 
-<body id="page-top">
-
-  <!--/ Nav Star /-->
-  <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
+  <!-- Navigation -->
+  <nav>
     <div class="container">
-      <a class="navbar-brand js-scroll" href="#page-top"></a>
-      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
-        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link js-scroll active" href="#home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="#work">Portfolio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll" href="#service">Links</a>
-          </li>
-        </ul>
-      </div>
+      <span class="logo">CSR</span>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
   </nav>
-  <!--/ Nav End /-->
 
-  <!--/ Intro Skew Star /-->
-  <div id="home" class="intro route bg-image" style="background-image: url(img/water.jpg)">
-    <div class="overlay-itro"></div>
-    <div class="intro-content display-table">
-      <div class="table-cell">
-        <div class="container">
-          <p class="display-6 color-d" style="line-height: 50px;">안녕하세요<br>개발자<br>채수룡입니다</p>
-          <h1 class="intro-title mb-4">Frontend developer</h1>
-          <p class="intro-subtitle"><span class="text-slider-items">Frontend, Backend, Blockchain</span><strong class="text-slider"></strong></p>
-          <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--/ Intro Skew End /-->
-
-  <section id="about" class="about-mf sect-pt4 route">
+  <!-- Hero Section -->
+  <section id="hero">
     <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="box-shadow-full">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="row">
-                  <!-- <div class="col-sm-6 col-md-5">
-                    <div class="about-img">
-                      <img src="img/testimonial-2.jpg" class="img-fluid rounded b-shadow-a" alt="">
-                    </div>
-                  </div> -->
-                  <div class="col-sm-6 col-md-7">
-                    <div class="about-info">
-                      <p class="profile-p-tag"><span class="title-s">이름 : </span> <span>채수룡</span></p>
-                      <p class="profile-p-tag"><span class="title-s">직군 : </span> <span>Frontend Developer</span></p>
-                      <p class="profile-p-tag"><span class="title-s">이메일 : </span> <span>chaesueryong@gmail.com</span></p>
-                      <p class="profile-p-tag"><span class="title-s">전화번호 : </span> <span>010-5743-5437</span></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="skill-mf">
-                  <p class="title-s">Skill</p>
-                  <span>HTML / CSS</span> <span class="pull-right">70%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>JavaScript</span> <span class="pull-right">80%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>Vue / React</span> <span class="pull-right">75%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>Nodejs</span> <span class="pull-right">70%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="about-me pt-4 pt-md-0">
-                  <div class="title-box-2">
-                    <h5 class="title-left">
-                      ABOUT
-                    </h5>
-                  </div>
-                  <p>
-                    <div style="display: flex">
-                      <div style="margin-right: 5px;">-</div>
-                      <div style="flex: 1;">HTML/CSS, JavaScript, Vue, React 프레임워크를 이용한 웹 / 앱 개발 (총 경력 2년)</div>
-                    </div>
-                    <div style="display: flex">
-                      <div style="margin-right: 5px;">-</div>
-                      <div style="flex: 1;">자주 사용되는 기능을 라이브러리로 제작하여 프로젝트 진행 및 유지 보수</div>
-                    </div>
-                    <div style="display: flex">
-                      <div style="margin-right: 5px;">-</div>
-                      <div style="flex: 1;">업무 중 발생하는 문제 해결 및 문서화</div>
-                    </div>
-                    <br>
-
-                    <div>*사용 기술</div>
-                    <div>- HTML/CSS, JS, Vue, React</div>
-                    <div>- Github, Notion, Jira</div>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="hero-content">
+        <p class="section-title">Frontend Developer</p>
+        <h1>
+          안녕하세요,<br>
+          <span>AI로 빠르게</span> 만드는<br>
+          개발자 채수룡입니다
+        </h1>
+        <p class="hero-subtitle">
+          4년차 프론트엔드 개발자로서 Next.js와 AI 도구를 활용해
+          빠르고 정확한 개발을 추구합니다.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">AI-Powered Dev</span>
+        </div>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
+          <a href="#contact" class="btn btn-secondary">연락하기</a>
         </div>
       </div>
     </div>
   </section>
 
-    <!--/ Section Portfolio Star /-->
-    <section id="work" class="portfolio-mf sect-pt4 route">
-      <div class="container">
-  
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="title-box text-center">
-              <h3 class="title-a">
-                Portfolio
-              </h3>
-              <p class="subtitle-a">
-              </p>
-              <div class="line-mf"></div>
-            </div>
-          </div>
-        </div>
-  
-        <div class="row">
-  
-          <div class="col-md-6">
-            <div class="work-box">
-              <a href="img/guarde.png" data-lightbox="gallery-mf"></a>
-              <div class="work-img">
-                <img src="img/guarde.png" alt="" class="img-fluid">
-              </div>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <h2 class="w-title">
-                      <div>Guardee Wallet</div>
-                      <div class="w-date">2021.09 ~ 2022.11(1년 2개월)</div>
-                    </h2>
-                    <div class="w-more">
-                      <div class="w-ctegory">- Android, Ios 크로스 플랫폼을 고려한 Cordova를 사용</div>
-                      <div class="w-ctegory">- 웹, 모바일을 고려한 반응형 css 작성</div>
-                      <div class="w-ctegory">- 플랫폼(Web, Android, Ios)별 UI 최적화</div>
-                      <div class="w-ctegory">- 출시 이후에 지문 인식 등 사용자의 편의를 개선</div>
-                      <div class="w-ctegory">
-                        <span>- </span>
-                        <a class="color-a" href="https://guardee.io" target="_blank">Web<span style="margin-left: 4px" class="ion-link"></span></a> / 
-                        <a class="color-a" href="https://play.google.com/store/apps/details?id=com.artifriends.guardee" target="_blank">Android<span style="margin-left: 4px" class="ion-link"></span></a> /
-                        <a class="color-a" href="https://fnd.io/#/kr/iphone-app/1629819477-guardee-by" target="_blank">Ios<span style="margin-left: 4px" class="ion-link"></span></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="work-box">
-              <a href="img/doozign.png" data-lightbox="gallery-mf"></a>
-              <div class="work-img">
-                <img src="img/doozign.png" alt="" class="img-fluid">
-              </div>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <h2 class="w-title">
-                      <div>Doozign</div>
-                      <div class="w-date">2021.05 ~ 2022.08(1년 3개월)</div>
-                    </h2>
-                    <div class="w-more">
-                      <div class="w-ctegory">- 라이브러리를 이용해 이미지 추가 및 조정 기능 구현</div>
-                      <div class="w-ctegory">- 앱 특성상 Push 알람기능을 고려해 Firebase를 사용</div>
-                      <div class="w-ctegory">- 카메라, 갤러리 등의 기능을 고려해 Cordova의 네이티브 기능을 사용</div>
-                      <div class="w-ctegory">- Long Polling 기법을 활용하여 채팅 기능 구현</div>
-                      <div class="w-ctegory">
-                        <span>- </span>
-                        <a class="color-a" href="https://play.google.com/store/apps/details?id=com.nrbd.doozigns" target="_blank">Android<span style="margin-left: 4px" class="ion-link"></span></a> /
-                        <a class="color-a" href="https://fnd.io/#/us/iphone-app/1589194232-doozign-by-nrbd" target="_blank">Ios<span style="margin-left: 4px" class="ion-link"></span></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-        </div>
-  
-        <div class="row">
-
-          <div class="col-md-6">
-            <div class="work-box">
-              <a href="img/aladin-web-page.png" data-lightbox="gallery-mf"></a>
-              <div class="work-img">
-                <img src="img/aladin-web-page.png" alt="" class="img-fluid">
-              </div>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <h2 class="w-title">
-                      <a class="color-a" href="https://aladdin25.com/" target="_blank">Aladdin25 거래소 <span class="ion-link"></span></a>
-                      <div class="w-date">2021.02 ~ 2021.05(3개월)</div>
-                    </h2>
-                    <div class="w-more">
-                      <div class="w-ctegory">- Bitcoin, Ethereum 계열 등의 블록체인 노드 설치(AWS-EC2)</div>
-                      <div class="w-ctegory">- 특정 이용자를 고려해 보안 시스템 구축(NGINX)</div>
-                      <div class="w-ctegory">
-                        <span>- </span>
-                        <a class="color-a" href="https://github.com/chaesueryong/blockchain-install" target="_blank">
-                          노드 사용자를 고려한 노드 설치 및 운영 방식 문서화 <span class="ion-link"></span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-    
-          <div class="col-md-6">
-            <div class="work-box">
-              <a href="img/sui-wallet.png" data-lightbox="gallery-mf"></a>
-              <div class="work-img">
-                <img src="img/sui-wallet.png" alt="" class="img-fluid">
-              </div>
-              <div class="work-content">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <h2 class="w-title">
-                      <a class="color-a" href="https://github.com/codestates/BTAFinalProject-03/tree/main/wallet/src/pages/Popup" target="_blank">Sui Wallet <span class="ion-link"></span></a>
-                      <div class="w-date">2022.10 ~ 2022.11(1개월)</div>
-                    </h2>
-                    <div class="w-more">
-                      <div class="w-ctegory">- React.js, Recoil, Chrome Extension, MVC 패턴 사용</div>
-                      <div class="w-ctegory">- Recoil로 Router 기능 구현</div>
-                      <div class="w-ctegory">- 내부 저장소 및 유효성 체크 함수 모듈화</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-  
-        </div>
-  
-      </div>
-    </section>
-
-  <section id="service" class="services-mf route">
+  <!-- What I Do Section -->
+  <section id="skills">
     <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="title-box text-center">
-            <h3 class="title-a">
-              LINKS
-            </h3>
-            <p class="subtitle-a">
-            </p>
-            <div class="line-mf"></div>
-          </div>
+      <p class="section-title">What I Do</p>
+      <h2>제가 잘하는 것들</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">⚡</div>
+          <h3>빠른 개발</h3>
+          <p>AI 도구(Claude, Cursor 등)를 적극 활용하여 개발 속도를 극대화합니다. 아이디어에서 프로덕션까지 빠르게 전환합니다.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🎯</div>
+          <h3>Next.js & React</h3>
+          <p>Next.js를 메인 스택으로 SSR, SSG, App Router 등 최신 기능을 활용한 웹 애플리케이션을 개발합니다.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📱</div>
+          <h3>크로스 플랫폼</h3>
+          <p>웹, 모바일(Android/iOS) 크로스 플랫폼 개발 경험으로 다양한 환경에서 동작하는 앱을 만듭니다.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🔗</div>
+          <h3>블록체인</h3>
+          <p>암호화폐 지갑, 거래소 개발 경험을 바탕으로 Web3 프로젝트에 기여할 수 있습니다.</p>
         </div>
       </div>
-      <div class="row">
+    </div>
+  </section>
 
-        <div class="col-md-6">
-          <div class="service-box">
-            <div class="service-ico">
-              <span class="ico-circle"><i class="ion-social-github"></i></span>
-            </div>
-            <div class="service-content">
-              <h2 class="s-title">Github</h2>
-              <p class="s-description text-center">
-                <a class="color-a" href="https://github.com/chaesueryong" target="_blank">Github <span class="ion-link"></span></a>
-              </p>
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-title">Projects</p>
+      <h2>주요 프로젝트</h2>
+      <div class="projects-grid">
+
+        <!-- Guardee Wallet -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="img/guarde.png" alt="Guardee Wallet">
+          </div>
+          <div class="project-info">
+            <span class="project-date">2021.09 — 2022.11 (1년 2개월)</span>
+            <h3>Guardee Wallet</h3>
+            <ul class="project-description">
+              <li>Android, iOS 크로스 플랫폼을 고려한 Cordova 기반 개발</li>
+              <li>웹, 모바일 반응형 CSS 설계 및 플랫폼별 UI 최적화</li>
+              <li>지문 인식 등 사용자 편의 기능 개선</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://guardee.io" target="_blank" class="project-link">🌐 Web</a>
+              <a href="https://play.google.com/store/apps/details?id=com.artifriends.guardee" target="_blank" class="project-link">📱 Android</a>
+              <a href="https://fnd.io/#/kr/iphone-app/1629819477-guardee-by" target="_blank" class="project-link">🍎 iOS</a>
             </div>
           </div>
         </div>
 
-        <div class="col-md-6">
-          <div class="service-box">
-            <div class="service-ico">
-              <span class="ico-circle"><i class="ion-social-codepen"></i></span>
-            </div>
-            <div class="service-content">
-              <h2 class="s-title">Baekjoon Online Judge</h2>
-              <p class="s-description text-center">
-                <a class="color-a" href="https://solved.ac/profile/csr0604" target="_blank">백준 알고리즘 풀이 <span class="ion-link"></span></a>
-              </p>
+        <!-- Aladdin25 -->
+        <div class="project-card">
+          <div class="project-image">
+            <img src="img/aladin-web-page.png" alt="Aladdin25 거래소">
+          </div>
+          <div class="project-info">
+            <span class="project-date">2021.02 — 2021.05 (3개월)</span>
+            <h3>Aladdin25 거래소</h3>
+            <ul class="project-description">
+              <li>Bitcoin, Ethereum 등 블록체인 노드 설치 및 운영 (AWS EC2)</li>
+              <li>NGINX를 활용한 보안 시스템 구축</li>
+              <li>노드 설치 및 운영 방식 문서화</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://aladdin25.com/" target="_blank" class="project-link">🌐 Web</a>
+              <a href="https://github.com/chaesueryong/blockchain-install" target="_blank" class="project-link">📄 문서</a>
             </div>
           </div>
         </div>
@@ -344,25 +597,64 @@
     </div>
   </section>
 
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <div id="preloader"></div>
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-title">Contact</p>
+      <h2>연락하기</h2>
+      <p class="subtitle">프로젝트 협업이나 채용 관련 문의는 언제든 환영합니다.</p>
+      <div class="contact-grid">
+        <a href="mailto:chaesueryong@gmail.com" class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-info">
+            <h4>Email</h4>
+            <p>chaesueryong@gmail.com</p>
+          </div>
+        </a>
+        <a href="https://github.com/chaesueryong" target="_blank" class="contact-item">
+          <div class="contact-icon">💻</div>
+          <div class="contact-info">
+            <h4>GitHub</h4>
+            <p>github.com/chaesueryong</p>
+          </div>
+        </a>
+        <a href="tel:010-5743-5437" class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-info">
+            <h4>Phone</h4>
+            <p>010-5743-5437</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 
-  <!-- JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/popper/popper.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/counterup/jquery.waypoints.min.js"></script>
-  <script src="lib/counterup/jquery.counterup.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="lib/lightbox/js/lightbox.min.js"></script>
-  <script src="lib/typed/typed.min.js"></script>
-  <!-- Contact Form JavaScript File -->
-  <script src="contactform/contactform.js"></script>
+  <!-- Footer -->
+  <footer>
+    <p>© 2024 채수룡. All rights reserved.</p>
+  </footer>
 
-  <!-- Template Main Javascript File -->
-  <script src="js/main.js"></script>
+  <script>
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Navbar background on scroll
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.background = 'rgba(10, 10, 10, 0.95)';
+      } else {
+        nav.style.background = 'rgba(10, 10, 10, 0.8)';
+      }
+    });
+  </script>
 
 </body>
 </html>
